@@ -1,0 +1,21 @@
+{
+  "name": "@confirmit/create-custom-question",
+  "title": "Confirmit custom question scaffolder",
+  "version": "1.0.0",
+  "description": "Confirmit custom question template",
+  "scripts": {
+    "start": "node ./index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Confirmit/CustomQuestionsNpx.git"
+  },
+  "bin": "./index.js",
+  "author": "Confirmit",
+  "license": "MIT",
+  "dependencies": {
+    "fs-extra": "^9.0.0",
+    "inquirer": "^7.1.0",
+    "uuid": "^7.0.3"
+  }
+}
