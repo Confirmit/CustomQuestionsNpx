@@ -59,29 +59,26 @@ const main = async () => {
         { name: "3D Grid Question", value: "Grid3DForm" },
       ],
     },
-    ,
     {
       type: "confirm",
       name: "useNodejsTemplate",
       message: "Do you want to use nodejs pipeline (recommended)?",
-      default: true,
     },
   ]);
 
   metadata.name = answers.displayName;
   metadata.baseQuestionType = answers.baseQuestionType;
 
-  const templateFolder = useNodejsTemplate ? "parcel" : "static";
-  if (useNodejsTemplate) {
+  const templateFolder = answers.useNodejsTemplate ? "parcel" : "static";
+  if (answers.useNodejsTemplate) {
     metadata.runtimeEntryPoint.component = "runtime/loader.js";
   }
 
   await fs.writeJson(path.join(cwd, "metadata.json"), metadata, { spaces: 2 });
   await fs.copy(path.join(__dirname, "templates", templateFolder), cwd);
-  await replaceGuidInFile(
-    path.join(cwd, "runtime", "component.js"),
-    metadata.id
-  );
+  ["component.js", "loader.js"].forEach(async (filename) => {
+    await replaceGuidInFile(path.join(cwd, "runtime", filename), metadata.id);
+  });
 
   console.log(
     "Done. You can modify custom question files and upload it as a zip file to Confirmit."
