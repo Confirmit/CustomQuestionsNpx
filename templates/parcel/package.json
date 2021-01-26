@@ -7,12 +7,15 @@
     "build:design": "parcel build design/index.html -d dist/design --no-source-maps",
     "build:runtime": "parcel build runtime/loader.js -d dist/runtime --no-source-maps",
     "clean": "rimraf dist",
-    "zip": "cd dist && bestzip bundle.zip * ../metadata.json",
-    "build": "npm run clean && npm run build:design && npm run build:runtime && npm run zip"
+    "zip": "cd dist && bestzip bundle.zip *",
+    "build": "npm run clean && npm run build:design && npm run build:runtime && copyfiles metadata.json dist/ && npm run zip"
   },
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "@babel/core": "^7.12.10",
+    "@babel/preset-env": "^7.12.11",
+    "copyfiles": "^2.4.1",
     "bestzip": "^2.1.7",
     "parcel-bundler": "^1.12.4",
     "rimraf": "^2.7.1"
