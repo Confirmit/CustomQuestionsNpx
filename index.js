@@ -59,13 +59,25 @@ const main = async () => {
         { name: "3D Grid Question", value: "Grid3DForm" },
       ],
     },
+    ,
+    {
+      type: "confirm",
+      name: "useNodejsTemplate",
+      message: "Do you want to use nodejs pipeline (recommended)?",
+      default: true,
+    },
   ]);
 
   metadata.name = answers.displayName;
   metadata.baseQuestionType = answers.baseQuestionType;
 
+  const templateFolder = useNodejsTemplate ? "parcel" : "static";
+  if (useNodejsTemplate) {
+    metadata.runtimeEntryPoint.component = "runtime/loader.js";
+  }
+
   await fs.writeJson(path.join(cwd, "metadata.json"), metadata, { spaces: 2 });
-  await fs.copy(path.join(__dirname, "templates", "static"), cwd);
+  await fs.copy(path.join(__dirname, "templates", templateFolder), cwd);
   await replaceGuidInFile(
     path.join(cwd, "runtime", "component.js"),
     metadata.id

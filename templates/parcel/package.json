@@ -1,0 +1,17 @@
+{
+  "name": "customquestion",
+  "version": "1.0.0",
+  "description": "",
+  "scripts": {
+    "start": "parcel design/index.html runtime/loader.js runtime/styles.css --https --port 1234",
+    "build:design": "parcel build design/index.html -d dist/design",
+    "build:runtime": "parcel build runtime/loader.js -d dist/runtime",
+    "clean": "rm -rf dist && mkdir dist",
+    "build": "npm run clean && npm run build:design && npm run build:runtime && cp metadata.json ./dist"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "parcel-bundler": "^1.12.4"
+  }
+}
