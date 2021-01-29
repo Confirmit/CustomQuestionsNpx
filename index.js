@@ -17,7 +17,7 @@ const getDefaultMetadataConfig = () => ({
   iconUrl: "design/icon.svg",
   designEntryPoint: "design/index.html",
   runtimeEntryPoint: {
-    component: "runtime/component.js",
+    component: "runtime/loader.js",
     deps: {
       scripts: [],
       styles: ["runtime/styles.css"],
@@ -76,9 +76,7 @@ const main = async () => {
 
   await fs.writeJson(path.join(cwd, "metadata.json"), metadata, { spaces: 2 });
   await fs.copy(path.join(__dirname, "templates", templateFolder), cwd);
-  ["component.js", "loader.js"].forEach(async (filename) => {
-    await replaceGuidInFile(path.join(cwd, "runtime", filename), metadata.id);
-  });
+  await replaceGuidInFile(path.join(cwd, "runtime", "loader.js"), metadata.id);
 
   console.log(
     "Done. You can modify custom question files and upload it as a zip file to Confirmit."

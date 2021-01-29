@@ -1,7 +1,7 @@
 {
   "name": "@confirmit/create-custom-question",
   "title": "Confirmit custom question scaffolder",
-  "version": "2.0.4",
+  "version": "2.0.5",
   "description": "Confirmit custom question template",
   "scripts": {
     "start": "node ./index.js"

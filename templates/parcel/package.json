@@ -8,8 +8,8 @@
     "build:design": "parcel build design/index.html -d dist/design --no-source-maps --public-url ./",
     "build:runtime": "parcel build runtime/loader.js -d dist/runtime --no-source-maps",
     "build:clean": "rimraf dist && rimraf dist-bundle",
-    "build:zip": "npx mkdirp dist-bundle && cd dist && bestzip ../dist-bundle/bundle.zip *",
-    "build:copy-static": "copyfiles metadata.json dist/ && copyfiles design/icon.svg dist/"
+    "build:zip": "mkdirp dist-bundle && cd dist && bestzip ../dist-bundle/bundle.zip *",
+    "build:copy-static": "copyfiles metadata.json design/icon.svg runtime/styles.css dist/"
   },
   "author": "",
   "license": "ISC",
@@ -17,6 +17,7 @@
     "@babel/core": "^7.12.10",
     "@babel/preset-env": "^7.12.11",
     "copyfiles": "^2.4.1",
+    "mkdirp": "^1.0.4",
     "bestzip": "^2.1.7",
     "parcel-bundler": "^1.12.4",
     "rimraf": "^2.7.1"
