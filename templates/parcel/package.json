@@ -4,11 +4,12 @@
   "description": "",
   "scripts": {
     "start": "parcel design/index.html runtime/loader.js runtime/styles.css --https --port 1234",
-    "build:design": "parcel build design/index.html -d dist/design --no-source-maps",
+    "build": "npm run build:clean && npm run build:design && npm run build:runtime && npm run build:copy-static && npm run build:zip",
+    "build:design": "parcel build design/index.html -d dist/design --no-source-maps --public-url ./",
     "build:runtime": "parcel build runtime/loader.js -d dist/runtime --no-source-maps",
-    "clean": "rimraf dist",
-    "zip": "cd dist && bestzip bundle.zip *",
-    "build": "npm run clean && npm run build:design && npm run build:runtime && copyfiles metadata.json dist/ && npm run zip"
+    "build:clean": "rimraf dist",
+    "build:zip": "cd dist && bestzip bundle.zip *",
+    "build:copy-static": "copyfiles metadata.json dist/ && copyfiles design/icon.svg dist/"
   },
   "author": "",
   "license": "ISC",
